@@ -1,0 +1,25 @@
+apiVersion: kafka.strimzi.io/v1
+kind: Kafka
+metadata:
+  name: my-cluster
+  namespace: {{ .Release.Namespace }}
+  annotations:
+    strimzi.io/node-pools: enabled
+    strimzi.io/kraft: enabled
+spec:
+  kafka:
+    version: {{ .Values.kafka.version }}
+    listeners:
+      - name: {{ .Values.listener.name }}
+        port: {{ .Values.listener.port }}
+        type: internal
+        tls: {{ .Values.listener.tls }}
+    config:
+      offsets.topic.replication.factor: {{ .Values.replication.offsets }}
+      transaction.state.log.replication.factor: {{ .Values.replication.transaction }}
+      transaction.state.log.min.isr: {{ .Values.replication.minIsr }}
+      default.replication.factor: {{ .Values.replication.default }}
+      min.insync.replicas: {{ .Values.replication.minIsr }}
+  entityOperator:
+    topicOperator: {}
+    userOperator: {}

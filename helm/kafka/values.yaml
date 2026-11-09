@@ -1,0 +1,30 @@
+kafka:
+  version: 4.3.2
+
+nodePool:
+  name: dual-role
+  replicas: 1
+  roles:
+    - controller
+    - broker
+
+storage:
+  size: 20Gi
+  class: managed-csi
+  deleteClaim: false
+
+replication:
+  default: 1
+  offsets: 1
+  transaction: 1
+  minIsr: 1
+
+listener:
+  name: plain
+  port: 9092
+  tls: false
+
+topic:
+  name: test-topic
+  partitions: 1
+  replicas: 1

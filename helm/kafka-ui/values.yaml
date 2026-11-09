@@ -1,0 +1,21 @@
+replicaCount: 1
+
+image:
+  repository: kafbat/kafka-ui
+  tag: latest
+  pullPolicy: IfNotPresent
+
+cluster:
+  name: aks-kafka
+  bootstrapServers: my-cluster-kafka-bootstrap:9092
+
+service:
+  type: ClusterIP
+  port: 8080
+
+resources: {}
+
+ingress:
+  enabled: false
+  className: nginx
+  host: kafka-ui.example.com

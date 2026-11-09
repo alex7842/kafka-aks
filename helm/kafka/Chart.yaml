@@ -1,0 +1,6 @@
+apiVersion: v2
+name: kafka
+description: Strimzi Kafka cluster (KRaft) for AKS
+type: application
+version: 0.1.0
+appVersion: "4.3.2"
